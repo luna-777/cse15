@@ -1,0 +1,17 @@
+[MAIN]
+py-version = 3.11
+ignore-paths =
+    ^.*[/\\]benchmarks[/\\].*$,
+    ^.*[/\\]trial_results[/\\].*$,
+    ^.*[/\\]\.next[/\\].*$,
+    ^.*[/\\]alembic[/\\]versions[/\\].*$,
+    ^.*[/\\]\.git[/\\].*$,
+    ^.*[/\\]node_modules[/\\].*$
+
+[MESSAGES CONTROL]
+disable =
+    missing-module-docstring,
+    missing-function-docstring
+
+[FORMAT]
+max-line-length = 88

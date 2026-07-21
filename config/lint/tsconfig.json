@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "skipLibCheck": true
+  },
+  "include": [
+    "../../typescript/**/*.ts",
+    "../../repos/VeriFi/frontend/src/**/*.ts",
+    "../../repos/VeriFi/frontend/src/**/*.tsx",
+    "../../repos/Lens/frontend/**/*.ts",
+    "../../repos/Lens/frontend/**/*.tsx",
+    "../../repos/SlugSync/supabase/functions/**/*.ts"
+  ],
+  "exclude": ["node_modules", "**/node_modules", "**/.next"]
+}
