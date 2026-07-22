@@ -1,4 +1,5 @@
 import eslint from "@eslint/js";
+import reactHooks from "eslint-plugin-react-hooks";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
@@ -22,5 +23,11 @@ export default tseslint.config(
       "repos/Lens/frontend/**/*.{ts,tsx}",
       "repos/SlugSync/supabase/functions/**/*.ts",
     ],
+    plugins: {
+      "react-hooks": reactHooks,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+    },
   }
 );

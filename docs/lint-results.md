@@ -1,17 +1,23 @@
 # Static Analysis Results (Centralized Lint)
 
-**Generated:** 2026-07-21  
-**Branch:** ttran @ 67f937e  
+**Generated:** 2026-07-22  
+**Branch:** ttran @ aab6647  
 **Regenerate:** `npm run lint:report`
+
+## Notes
+
+- Pylint `import-error` (E0401) is disabled in centralized config — cross-repo runs do not install each repo's Python dependencies.
+- ESLint uses root `typescript-eslint` + `eslint-plugin-react-hooks`; repo-specific ESLint configs are not applied.
+- Flake8 counts are the most directly comparable cross-repo style signal.
 
 ## Summary
 
 | Repo | ESLint | Pylint | Flake8 | Overall |
 |------|--------|--------|--------|---------|
-| alexandria | N/A | 992 issues, score 7.35/10 (Fail) | 682 issues (Fail) | Fail |
-| wayfinder | N/A | 353 issues, score 7.07/10 (Fail) | 180 issues (Fail) | Fail |
-| VeriFi | 1 issue (Fail) | 29 issues, score 7.26/10 (Fail) | 2 issues (Fail) | Fail |
-| Lens | 4 issues (Fail) | 38 issues, score 3.47/10 (Fail) | 23 issues (Fail) | Fail |
+| alexandria | N/A | 948 issues, score 7.85/10 (Fail) | 682 issues (Fail) | Fail |
+| wayfinder | N/A | 301 issues, score 8.43/10 (Fail) | 180 issues (Fail) | Fail |
+| VeriFi | 0 issues (Pass) | 24 issues, score 8.66/10 (Fail) | 2 issues (Fail) | Fail |
+| Lens | 3 issues (Fail) | 23 issues, score 8.47/10 (Fail) | 23 issues (Fail) | Fail |
 | SlugSync | 0 issues (Pass) | N/A | N/A | Pass |
 | CsLife | N/A | N/A | N/A | Not covered |
 | Examples | 0 issues (Pass) | 0 issues, score 10.00/10 (Pass) | 0 issues (Pass) | Pass |
@@ -20,7 +26,7 @@
 
 **Python paths:** `repos/alexandria/src`
 
-- **Pylint:** 992 issues, score 7.35/10 (Fail)
+- **Pylint:** 948 issues, score 7.85/10 (Fail)
 - **Flake8:** 682 issues (Fail)
 
 **Sample Pylint findings:**
@@ -55,21 +61,21 @@
 
 **Python paths:** `repos/wayfinder/backend/app`
 
-- **Pylint:** 353 issues, score 7.07/10 (Fail)
+- **Pylint:** 301 issues, score 8.43/10 (Fail)
 - **Flake8:** 180 issues (Fail)
 
 **Sample Pylint findings:**
 
 - `repos\wayfinder\backend\app\main.py:53:0: C0301: Line too long (93/88) (line-too-long)`
-- `repos\wayfinder\backend\app\main.py:6:0: E0401: Unable to import 'fastapi' (import-error)`
-- `repos\wayfinder\backend\app\main.py:7:0: E0401: Unable to import 'fastapi.middleware.cors' (import-error)`
-- `repos\wayfinder\backend\app\main.py:8:0: E0401: Unable to import 'fastapi.responses' (import-error)`
-- `repos\wayfinder\backend\app\main.py:9:0: E0401: Unable to import 'sqlalchemy' (import-error)`
-- `repos\wayfinder\backend\app\main.py:10:0: E0401: Unable to import 'sqlalchemy.exc' (import-error)`
-- `repos\wayfinder\backend\app\main.py:11:0: E0401: Unable to import 'sqlalchemy.ext.asyncio' (import-error)`
 - `repos\wayfinder\backend\app\main.py:39:19: W0621: Redefining name 'app' from outer scope (line 62) (redefined-outer-name)`
 - `repos\wayfinder\backend\app\main.py:52:11: W0718: Catching too general exception Exception (broad-exception-caught)`
 - `repos\wayfinder\backend\app\main.py:47:12: C0415: Import outside toplevel (app.services.dev_seed.ensure_dev_test_user) (import-outside-toplevel)`
+- `repos\wayfinder\backend\app\main.py:39:19: W0613: Unused argument 'app' (unused-argument)`
+- `repos\wayfinder\backend\app\core\config.py:1:0: C0301: Line too long (91/88) (line-too-long)`
+- `repos\wayfinder\backend\app\core\config.py:16:0: C0301: Line too long (92/88) (line-too-long)`
+- `repos\wayfinder\backend\app\core\config.py:42:0: C0301: Line too long (92/88) (line-too-long)`
+- `repos\wayfinder\backend\app\core\config.py:63:0: C0301: Line too long (92/88) (line-too-long)`
+- `repos\wayfinder\backend\app\core\config.py:82:0: C0301: Line too long (92/88) (line-too-long)`
 - _…truncated (10 shown)_
 
 **Sample Flake8 findings:**
@@ -90,30 +96,27 @@
 
 **ESLint paths:** `repos/VeriFi/frontend/src`
 
-- **ESLint:** 1 issue (Fail)
-  - Errors: 1, Warnings: 0
+- **ESLint:** 0 issues (Pass)
 
 **Python paths:** `repos/VeriFi/backend/retrieval`, `repos/VeriFi/backend/src`
 
-- **Pylint:** 29 issues, score 7.26/10 (Fail)
+- **Pylint:** 24 issues, score 8.66/10 (Fail)
 - **Flake8:** 2 issues (Fail)
 
-**Sample ESLint findings:**
-
-- `C:\Users\woofy\cse15\repos\VeriFi\frontend\src\pages\ChatPage.tsx:92:5 error Definition for rule 'react-hooks/exhaustive-deps' was not found. (react-hooks/exhaustive-deps)`
+_No issues reported._
 
 **Sample Pylint findings:**
 
-- `repos\VeriFi\backend\retrieval\embedder.py:5:0: E0401: Unable to import 'sentence_transformers' (import-error)`
 - `repos\VeriFi\backend\retrieval\vector_client.py:28:0: C0301: Line too long (90/88) (line-too-long)`
 - `repos\VeriFi\backend\src\main.py:114:0: C0301: Line too long (110/88) (line-too-long)`
-- `repos\VeriFi\backend\src\main.py:16:0: E0401: Unable to import 'fastapi' (import-error)`
-- `repos\VeriFi\backend\src\main.py:17:0: E0401: Unable to import 'fastapi.middleware.cors' (import-error)`
-- `repos\VeriFi\backend\src\main.py:18:0: E0401: Unable to import 'pydantic' (import-error)`
 - `repos\VeriFi\backend\src\main.py:30:0: C0413: Import "from retrieval import embedder, fallback_search, mapper, vector_client" should be placed at the top of the module (wrong-import-position)`
 - `repos\VeriFi\backend\src\main.py:31:0: C0413: Import "from retrieval.config import CHUNKS_PATH, SEARCH_CLI_PATH" should be placed at the top of the module (wrong-import-position)`
-- `repos\VeriFi\backend\src\main.py:32:0: E0401: Unable to import 'rag_pipeline' (import-error)`
 - `repos\VeriFi\backend\src\main.py:32:0: C0413: Import "from rag_pipeline import generate_rag_response" should be placed at the top of the module (wrong-import-position)`
+- `repos\VeriFi\backend\src\main.py:36:0: C0103: Constant name "_retrieval_ready" doesn't conform to UPPER_CASE naming style (invalid-name)`
+- `repos\VeriFi\backend\src\main.py:37:0: C0103: Constant name "_use_cpp_cli" doesn't conform to UPPER_CASE naming style (invalid-name)`
+- `repos\VeriFi\backend\src\main.py:47:19: W0621: Redefining name 'app' from outer scope (line 67) (redefined-outer-name)`
+- `repos\VeriFi\backend\src\main.py:48:4: W0603: Using the global statement (global-statement)`
+- `repos\VeriFi\backend\src\main.py:47:19: W0613: Unused argument 'app' (unused-argument)`
 - _…truncated (10 shown)_
 
 **Sample Flake8 findings:**
@@ -125,12 +128,12 @@
 
 **ESLint paths:** `repos/Lens/frontend`
 
-- **ESLint:** 4 issues (Fail)
-  - Errors: 4, Warnings: 0
+- **ESLint:** 3 issues (Fail)
+  - Errors: 3, Warnings: 0
 
 **Python paths:** `repos/Lens/backend/app`
 
-- **Pylint:** 38 issues, score 3.47/10 (Fail)
+- **Pylint:** 23 issues, score 8.47/10 (Fail)
 - **Flake8:** 23 issues (Fail)
 
 **Sample ESLint findings:**
@@ -138,20 +141,19 @@
 - `C:\Users\woofy\cse15\repos\Lens\frontend\app\page.tsx:84:10 error 'incidents' is assigned a value but never used. (@typescript-eslint/no-unused-vars)`
 - `C:\Users\woofy\cse15\repos\Lens\frontend\app\page.tsx:84:21 error 'setIncidents' is assigned a value but never used. (@typescript-eslint/no-unused-vars)`
 - `C:\Users\woofy\cse15\repos\Lens\frontend\app\page.tsx:140:17 error Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)`
-- `C:\Users\woofy\cse15\repos\Lens\frontend\app\page.tsx:202:5 error Definition for rule 'react-hooks/exhaustive-deps' was not found. (react-hooks/exhaustive-deps)`
 
 **Sample Pylint findings:**
 
-- `repos\Lens\backend\app\main.py:1:0: E0401: Unable to import 'fastapi' (import-error)`
-- `repos\Lens\backend\app\main.py:3:0: E0401: Unable to import 'app.api.incidents' (import-error)`
-- `repos\Lens\backend\app\main.py:4:0: E0401: Unable to import 'app.api.lens' (import-error)`
-- `repos\Lens\backend\app\main.py:5:0: E0401: Unable to import 'app.api.neighborhoods' (import-error)`
 - `repos\Lens\backend\app\api\incidents.py:65:0: C0301: Line too long (96/88) (line-too-long)`
-- `repos\Lens\backend\app\api\incidents.py:12:0: E0401: Unable to import 'psycopg2' (import-error)`
-- `repos\Lens\backend\app\api\incidents.py:13:0: E0401: Unable to import 'psycopg2.extras' (import-error)`
-- `repos\Lens\backend\app\api\incidents.py:14:0: E0401: Unable to import 'fastapi' (import-error)`
-- `repos\Lens\backend\app\api\incidents.py:15:0: E0401: Unable to import 'pydantic' (import-error)`
 - `repos\Lens\backend\app\api\incidents.py:37:0: C0115: Missing class docstring (missing-class-docstring)`
+- `repos\Lens\backend\app\api\incidents.py:37:0: R0903: Too few public methods (0/2) (too-few-public-methods)`
+- `repos\Lens\backend\app\api\lens.py:90:0: C0301: Line too long (89/88) (line-too-long)`
+- `repos\Lens\backend\app\api\lens.py:172:0: C0301: Line too long (108/88) (line-too-long)`
+- `repos\Lens\backend\app\api\lens.py:174:0: C0301: Line too long (89/88) (line-too-long)`
+- `repos\Lens\backend\app\api\lens.py:195:0: C0301: Line too long (98/88) (line-too-long)`
+- `repos\Lens\backend\app\api\lens.py:214:0: C0301: Line too long (94/88) (line-too-long)`
+- `repos\Lens\backend\app\api\lens.py:264:0: C0301: Line too long (94/88) (line-too-long)`
+- `repos\Lens\backend\app\api\lens.py:265:0: C0301: Line too long (92/88) (line-too-long)`
 - _…truncated (10 shown)_
 
 **Sample Flake8 findings:**

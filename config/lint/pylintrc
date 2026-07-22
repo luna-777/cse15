@@ -11,7 +11,8 @@ ignore-paths =
 [MESSAGES CONTROL]
 disable =
     missing-module-docstring,
-    missing-function-docstring
+    missing-function-docstring,
+    import-error
 
 [FORMAT]
 max-line-length = 88

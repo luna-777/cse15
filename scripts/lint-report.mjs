@@ -392,6 +392,11 @@ function buildReport(repoResults, exampleResults) {
   md += `**Branch:** ${branch} @ ${commit}  \n`;
   md += `**Regenerate:** \`npm run lint:report\`\n\n`;
 
+  md += `## Notes\n\n`;
+  md += `- Pylint \`import-error\` (E0401) is disabled in centralized config — cross-repo runs do not install each repo's Python dependencies.\n`;
+  md += `- ESLint uses root \`typescript-eslint\` + \`eslint-plugin-react-hooks\`; repo-specific ESLint configs are not applied.\n`;
+  md += `- Flake8 counts are the most directly comparable cross-repo style signal.\n\n`;
+
   md += `## Summary\n\n`;
   md += `| Repo | ESLint | Pylint | Flake8 | Overall |\n`;
   md += `|------|--------|--------|--------|---------|\n`;
