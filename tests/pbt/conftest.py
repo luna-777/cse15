@@ -19,7 +19,13 @@ import pytest
 REPO_ROOT = Path(__file__).resolve().parents[2]
 REPOS = REPO_ROOT / "repos"
 
-JWT_SECRET = "wednesday-pbt-pilot-not-for-production-use-abcdefghijklmnopqrstuvwxyz"
+# Wayfinder Settings rejects empty / "change-me-in-production". Prefer a real
+# JWT_SECRET from the environment; otherwise use this clearly local dummy.
+_LOCAL_JWT_DUMMY = "pbt-local-dummy"
+
+
+def _ensure_jwt_secret() -> None:
+    os.environ.setdefault("JWT_SECRET", _LOCAL_JWT_DUMMY)
 
 
 def _purge_app_modules() -> None:
@@ -53,7 +59,7 @@ def _load_alexandria_similarity():
 
 
 def _load_wayfinder_fns():
-    os.environ["JWT_SECRET"] = JWT_SECRET
+    _ensure_jwt_secret()
     backend = str(REPOS / "wayfinder" / "backend")
     _purge_app_modules()
     sys.path.insert(0, backend)

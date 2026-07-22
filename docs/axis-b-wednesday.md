@@ -80,8 +80,8 @@ from alexandria.ir.similarity import normalize, compute_cos_sim_diff, _similarit
 print('ok')
 "
 
-# Wayfinder (Settings requires a non-default JWT secret)
-JWT_SECRET='wednesday-pbt-pilot-not-for-production-use-abcdefghijklmnopqrstuvwxyz' \
+# Wayfinder (Settings requires a non-default JWT secret; any non-placeholder works)
+JWT_SECRET=pbt-local-dummy \
 PYTHONPATH=repos/wayfinder/backend pbt-venv/bin/python -c "
 from app.schemas.travel import validate_trip_date_range, iter_trip_dates
 from app.services.favorites import _format_nights
@@ -100,10 +100,10 @@ print('ok')
 ### Setup caveats for Thursday
 
 1. **Alexandria package import:** `import alexandria` pulls ops + tiktoken encoding download. Prefer the namespace-package load above (or install encodings offline) when writing tests.
-2. **Wayfinder Settings:** set `JWT_SECRET` to a non-placeholder value before importing modules that load `app.core.config`.
+2. **Wayfinder Settings:** set `JWT_SECRET` to any non-placeholder value before importing modules that load `app.core.config` (empty and `change-me-in-production` are rejected). Prefer an env var; do not commit real credentials. The PBT `conftest.py` uses `setdefault` with a local dummy when unset.
 3. **Shared `app` package name:** Wayfinder and Lens both use `app.*` — import them in separate processes or clear `sys.modules` between repos.
 4. **No `@given` tests yet** — property writing and pass/fail recording are Thursday work.
-
+5. **Requirements scope:** `requirements-pbt.txt` omits `tiktoken` / `openai` because the pilot uses the Alexandria namespace stub and never exercises those imports.
 ## Thursday preview
 
 Write Hypothesis properties for the 10 kept functions, run them, record pass/fail + minimal failing examples, separate real bugs from bad tests/setup, and note scaling limits.

@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import date, timedelta
 
 import pytest
-from hypothesis import given, settings
+from hypothesis import assume, given, settings
 from hypothesis import strategies as st
 
 MAX_TRIP_INCLUSIVE_DAYS = 14
@@ -31,8 +31,7 @@ def test_validate_trip_date_range_accepts_valid(wayfinder, pair):
 @given(start=_DATES, end=_DATES)
 @settings(max_examples=60)
 def test_validate_trip_date_range_end_before_start(wayfinder, start, end):
-    if end >= start:
-        return
+    assume(end < start)
     with pytest.raises(ValueError, match="on or after"):
         wayfinder["validate_trip_date_range"](start, end)
 
@@ -51,8 +50,7 @@ def test_validate_trip_date_range_too_long(wayfinder, start):
 )
 @settings(max_examples=40)
 def test_validate_trip_date_range_none_required(wayfinder, start, end):
-    if start is not None and end is not None:
-        return
+    assume(start is None or end is None)
     with pytest.raises(ValueError, match="required"):
         wayfinder["validate_trip_date_range"](start, end)
 

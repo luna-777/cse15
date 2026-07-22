@@ -9,5 +9,3 @@ pandas
 sqlalchemy
 psycopg2-binary
 pydantic-settings
-tiktoken
-openai

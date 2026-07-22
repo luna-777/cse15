@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import numpy as np
-from hypothesis import given, settings
+from hypothesis import assume, given, settings
 from hypothesis import strategies as st
 
 # Modest sizes keep matrix tests fast while still exploring shapes.
@@ -74,15 +74,13 @@ def test_compute_cos_sim_diff_identical_near_zero(alexandria, dim, data):
 def test_compute_cos_sim_diff_orthogonal_near_one(alexandria, dim, data):
     compute_cos_sim_diff = alexandria["compute_cos_sim_diff"]
     # Build an orthogonal pair in R^dim (dim>=2) via Gram-Schmidt-ish pick.
-    if dim < 2:
-        return
+    assume(dim >= 2)
     a = data.draw(_nonzero_vector(dim))
     b = data.draw(_nonzero_vector(dim))
     # Project b off a; skip if residual collapses.
     proj = (float(a @ b) / float(a @ a)) * a
     b_orth = b - proj
-    if float(np.linalg.norm(b_orth)) <= 1e-6:
-        return
+    assume(float(np.linalg.norm(b_orth)) > 1e-6)
     b_orth = b_orth.astype(np.float32)
     diff = compute_cos_sim_diff(a, b_orth)
     assert abs(diff - 1.0) < 1e-4

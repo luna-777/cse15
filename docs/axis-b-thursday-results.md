@@ -14,7 +14,8 @@ End-to-end Hypothesis/pytest properties for all **10** locked functions ran gree
 ```bash
 cd /Users/joshuacao/cse15
 source pbt-venv/bin/activate
-export JWT_SECRET='wednesday-pbt-pilot-not-for-production-use-abcdefghijklmnopqrstuvwxyz'
+# Optional: set JWT_SECRET yourself. If unset, tests/pbt/conftest.py uses a local dummy
+# (anything except empty / Wayfinder's "change-me-in-production" placeholder).
 pytest tests/pbt/ -v
 ```
 
@@ -76,7 +77,7 @@ Environment notes from the run:
 
 ```
 tests/pbt/
-  conftest.py                 # Alexandria namespace load; JWT_SECRET; app.* purge for Wayfinder vs Lens
+  conftest.py                 # Alexandria namespace load; JWT_SECRET env/dummy; app.* purge for Wayfinder vs Lens
   test_alexandria_similarity.py
   test_wayfinder_travel.py
   test_wayfinder_misc.py
@@ -85,7 +86,7 @@ tests/pbt/
 
 Import strategy (honors Wednesday caveats):
 1. **Alexandria** — namespace-package stub for `alexandria` / `alexandria.ir` so package `__init__` (tiktoken) is never imported.
-2. **Wayfinder** — `JWT_SECRET` set before import; functions extracted then `app.*` purged from `sys.modules`.
+2. **Wayfinder** — `JWT_SECRET` from the environment (or a local dummy via `setdefault`); functions extracted then `app.*` purged from `sys.modules`.
 3. **Lens** — same purge/load pattern so Wayfinder and Lens can share one pytest process despite both using `app.*`.
 
 ## Triage notes
@@ -95,7 +96,7 @@ No failures to triage. Pre-run setup risks that were **avoided** (and must not b
 | Symptom | Likely cause | Classification |
 |---------|--------------|----------------|
 | Hang / network on Alexandria import | `import alexandria` pulls tiktoken encodings | **setup/import** — use namespace load |
-| `JWT_SECRET` validation error on Wayfinder import | Placeholder secret rejected by Settings | **setup/import** — export pilot secret |
+| `JWT_SECRET` validation error on Wayfinder import | Placeholder secret rejected by Settings | **setup/import** — set `JWT_SECRET` env (or rely on conftest dummy) |
 | Wrong helpers / missing symbols after collecting both Wayfinder + Lens | Shared `app` package name collision | **setup/import** — purge `app.*` between loads (handled in `conftest.py`) |
 
 ## Acceptance criteria map
