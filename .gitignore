@@ -18,6 +18,11 @@ coverage/
 .coverage
 htmlcov/
 
+# Pipeline regenerable outputs (keep folder via .gitkeep)
+data/derived/*
+!data/derived/.gitkeep
+data/user_prompts.csv
+
 # Environment variables and secrets
 .env
 .env.*
