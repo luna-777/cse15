@@ -1,8 +1,12 @@
 # Dependencies
 node_modules/
 
+# Cloned student repos (local inspection only)
+repos/
+
 # Python environments and caches
 .venv/
+pbt-venv/
 venv/
 __pycache__/
 *.py[cod]

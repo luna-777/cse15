@@ -1,0 +1,11 @@
+hypothesis
+pytest
+numpy
+pydantic
+fastapi
+httpx
+pycountry
+pandas
+sqlalchemy
+psycopg2-binary
+pydantic-settings
