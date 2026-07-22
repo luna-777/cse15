@@ -1,5 +1,20 @@
 {
+  "name": "cse15",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "node scripts/lint.mjs",
+    "lint:repos": "node scripts/lint.mjs",
+    "lint:ts": "node scripts/lint.mjs --ts-only",
+    "lint:py": "node scripts/lint.mjs --py-only",
+    "lint:report": "node scripts/lint-report.mjs"
+  },
   "devDependencies": {
-    "supabase": "^2.109.1"
+    "@eslint/js": "^9.28.0",
+    "eslint": "^9.28.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "supabase": "^2.109.1",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.1"
   }
 }
