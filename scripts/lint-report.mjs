@@ -35,6 +35,10 @@ const REPO_TARGETS = {
     eslint: ["repos/SlugSync/supabase/functions"],
     python: [],
   },
+  "StudyPet-Plus": {
+    eslint: ["repos/StudyPet-Plus/src"],
+    python: [],
+  },
   CsLife: {
     eslint: [],
     python: [],
