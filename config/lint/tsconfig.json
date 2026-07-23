@@ -14,7 +14,9 @@
     "../../repos/VeriFi/frontend/src/**/*.tsx",
     "../../repos/Lens/frontend/**/*.ts",
     "../../repos/Lens/frontend/**/*.tsx",
-    "../../repos/SlugSync/supabase/functions/**/*.ts"
+    "../../repos/SlugSync/supabase/functions/**/*.ts",
+    "../../repos/StudyPet-Plus/src/**/*.ts",
+    "../../repos/StudyPet-Plus/src/**/*.tsx"
   ],
   "exclude": ["node_modules", "**/node_modules", "**/.next"]
 }

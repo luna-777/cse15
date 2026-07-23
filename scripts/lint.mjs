@@ -18,6 +18,7 @@ const TS_TARGETS = [
   "repos/VeriFi/frontend/src",
   "repos/Lens/frontend",
   "repos/SlugSync/supabase/functions",
+  "repos/StudyPet-Plus/src",
 ];
 
 const PY_TARGETS = [

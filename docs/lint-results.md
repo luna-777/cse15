@@ -1,7 +1,7 @@
 # Static Analysis Results (Centralized Lint)
 
 **Generated:** 2026-07-22  
-**Branch:** ttran @ aab6647  
+**Branch:** ttran @ b68e682  
 **Regenerate:** `npm run lint:report`
 
 ## Notes
@@ -19,6 +19,7 @@
 | VeriFi | 0 issues (Pass) | 24 issues, score 8.66/10 (Fail) | 2 issues (Fail) | Fail |
 | Lens | 3 issues (Fail) | 23 issues, score 8.47/10 (Fail) | 23 issues (Fail) | Fail |
 | SlugSync | 0 issues (Pass) | N/A | N/A | Pass |
+| StudyPet-Plus | 11 issues (Fail) | N/A | N/A | Fail |
 | CsLife | N/A | N/A | N/A | Not covered |
 | Examples | 0 issues (Pass) | 0 issues, score 10.00/10 (Pass) | 0 issues (Pass) | Pass |
 
@@ -177,6 +178,27 @@ _No issues reported._
 - **ESLint:** 0 issues (Pass)
 
 _No issues reported._
+
+## StudyPet-Plus
+
+**ESLint paths:** `repos/StudyPet-Plus/src`
+
+- **ESLint:** 11 issues (Fail)
+  - Errors: 11, Warnings: 0
+
+**Sample ESLint findings:**
+
+- `C:\Users\woofy\cse15\repos\StudyPet-Plus\src\components\dashboard\pet\PetScene.tsx:143:15 error '_xpProgress' is defined but never used. (@typescript-eslint/no-unused-vars)`
+- `C:\Users\woofy\cse15\repos\StudyPet-Plus\src\components\dashboard\pet\PetScene.tsx:144:15 error '_xpBurstKey' is assigned a value but never used. (@typescript-eslint/no-unused-vars)`
+- `C:\Users\woofy\cse15\repos\StudyPet-Plus\src\components\groups\GroupWorkspace.tsx:263:7 error Definition for rule '@next/next/no-img-element' was not found. (@next/next/no-img-element)`
+- `C:\Users\woofy\cse15\repos\StudyPet-Plus\src\lib\ai\planner-import.ts:174:7 error 'TERM_NAMES' is assigned a value but only used as a type. (@typescript-eslint/no-unused-vars)`
+- `C:\Users\woofy\cse15\repos\StudyPet-Plus\src\lib\note-pdf.ts:21:14 error Unexpected control character(s) in regular expression: \x00, \x1f. (no-control-regex)`
+- `C:\Users\woofy\cse15\repos\StudyPet-Plus\src\lib\pet-display.ts:2:3 error 'getPetStage' is defined but never used. (@typescript-eslint/no-unused-vars)`
+- `C:\Users\woofy\cse15\repos\StudyPet-Plus\src\lib\pet-display.ts:3:8 error 'PetStage' is defined but never used. (@typescript-eslint/no-unused-vars)`
+- `C:\Users\woofy\cse15\repos\StudyPet-Plus\src\lib\planner-import-file.ts:101:23 error Unexpected control character(s) in regular expression: \x01, \x08, \x0b, \x0c, \x0e, \x1f. (no-control-regex)`
+- `C:\Users\woofy\cse15\repos\StudyPet-Plus\src\lib\review-next.ts:295:33 error '_score' is defined but never used. (@typescript-eslint/no-unused-vars)`
+- `C:\Users\woofy\cse15\repos\StudyPet-Plus\src\lib\validators.ts:304:6 error 'NotePdfShape' is defined but never used. (@typescript-eslint/no-unused-vars)`
+- _…truncated (10 shown)_
 
 ## CsLife
 

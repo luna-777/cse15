@@ -1,0 +1,5 @@
+region_id,rater,readability,naming,structure,error_handling
+r1,you,4,3,5,4
+r1,teammate,3,3,4,4
+r2,you,2,2,3,1
+r2,teammate,3,2,3,2

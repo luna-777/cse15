@@ -22,6 +22,7 @@ export default tseslint.config(
       "repos/VeriFi/frontend/src/**/*.{ts,tsx}",
       "repos/Lens/frontend/**/*.{ts,tsx}",
       "repos/SlugSync/supabase/functions/**/*.ts",
+      "repos/StudyPet-Plus/src/**/*.{ts,tsx}",
     ],
     plugins: {
       "react-hooks": reactHooks,
